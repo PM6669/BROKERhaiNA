@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard | BrokerHaiNA</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="admin-shell">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="logo" href="index.html">Broker<span>HaiNA</span> Admin</a>
+        <button class="btn cta" id="logoutAdmin">Logout</button>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <h1>Welcome, Admin</h1>
+      <p>Manage inquiries, listings, and service workflow from this responsive control panel.</p>
+
+      <section class="dashboard-cards">
+        <article class="stat"><h3>54</h3><p>Active Rental Leads</p></article>
+        <article class="stat"><h3>18</h3><p>Buy/Sell Deals</p></article>
+        <article class="stat"><h3>33</h3><p>Legal Docs in Process</p></article>
+        <article class="stat"><h3>12</h3><p>Police Verifications</p></article>
+      </section>
+
+      <section class="section">
+        <h2>Recent Inquiries</h2>
+        <table class="admin-table">
+          <thead>
+            <tr><th>Name</th><th>City</th><th>Need</th><th>Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Krunal P.</td><td>Anand</td><td>2 BHK Rental</td><td>Follow-up Today</td></tr>
+            <tr><td>Ritika N.</td><td>Ahmedabad</td><td>Office Lease</td><td>Site Visit Set</td></tr>
+            <tr><td>Mehul R.</td><td>Nadiad</td><td>Sale Documentation</td><td>Agreement Draft</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <script>
+      if (localStorage.getItem('brokerRole') !== 'admin') {
+        window.location.href = 'index.html';
+      }
+      document.getElementById('logoutAdmin').addEventListener('click', () => {
+        localStorage.removeItem('brokerRole');
+        localStorage.removeItem('brokerUser');
+        window.location.href = 'index.html';
+      });
+    </script>
+  </body>
+</html>

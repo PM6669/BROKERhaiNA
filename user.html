@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard | BrokerHaiNA</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="admin-shell">
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="logo" href="index.html">Broker<span>HaiNA</span> User</a>
+        <button class="btn cta" id="logoutUser">Logout</button>
+      </div>
+    </header>
+
+    <main class="dashboard">
+      <h1 id="welcomeUser">Welcome</h1>
+      <p>Track your requests, shortlist properties, and monitor legal processing updates.</p>
+      <section class="dashboard-cards">
+        <article class="stat"><h3>3</h3><p>Shortlisted Properties</p></article>
+        <article class="stat"><h3>1</h3><p>Active Inquiry</p></article>
+        <article class="stat"><h3>2</h3><p>Docs Uploaded</p></article>
+        <article class="stat"><h3>On Time</h3><p>Support SLA</p></article>
+      </section>
+    </main>
+
+    <script>
+      const role = localStorage.getItem('brokerRole');
+      const user = localStorage.getItem('brokerUser') || 'Customer';
+      if (role !== 'user') {
+        window.location.href = 'index.html';
+      }
+      document.getElementById('welcomeUser').textContent = `Welcome, ${user}`;
+      document.getElementById('logoutUser').addEventListener('click', () => {
+        localStorage.removeItem('brokerRole');
+        localStorage.removeItem('brokerUser');
+        window.location.href = 'index.html';
+      });
+    </script>
+  </body>
+</html>
