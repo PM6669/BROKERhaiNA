@@ -7,43 +7,86 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="admin-shell">
-    <header class="site-header">
-      <div class="container nav-wrap">
-        <a class="logo" href="index.html">Broker<span>HaiNA</span> Admin</a>
-        <button class="btn cta" id="logoutAdmin">Logout</button>
+    <div class="admin-layout">
+      <aside class="admin-sidebar" id="adminSidebar">
+        <div class="sidebar-brand">Broker<span>HaiNA</span></div>
+        <nav>
+          <a href="#" class="active">Dashboard</a>
+          <a href="#">Leads</a>
+          <a href="#">Properties</a>
+          <a href="#">Legal Docs</a>
+          <a href="#">Police Verification</a>
+          <a href="#">Billing</a>
+        </nav>
+      </aside>
+
+      <div class="admin-main">
+        <header class="admin-topbar">
+          <button class="menu-toggle admin-menu-toggle" id="adminMenuToggle" aria-label="Toggle admin menu">☰</button>
+          <a class="logo" href="index.html">Broker<span>HaiNA</span> Admin</a>
+          <button class="btn cta" id="logoutAdmin">Logout</button>
+        </header>
+
+        <main class="dashboard">
+          <h1>Welcome, Admin</h1>
+          <p>Manage inquiries, listings, agreements, and verification workflows with a smooth responsive control panel.</p>
+
+          <section class="dashboard-cards">
+            <article class="stat"><h3>54</h3><p>Active Rental Leads</p></article>
+            <article class="stat"><h3>18</h3><p>Buy/Sell Deals</p></article>
+            <article class="stat"><h3>33</h3><p>Legal Docs in Process</p></article>
+            <article class="stat"><h3>12</h3><p>Police Verifications</p></article>
+          </section>
+
+          <section class="section admin-panels">
+            <article class="admin-panel">
+              <h2>Today’s Priorities</h2>
+              <ul>
+                <li>3 tenancy agreements pending e-sign confirmation</li>
+                <li>2 site visits scheduled in Vadodara</li>
+                <li>5 police verification files need upload check</li>
+              </ul>
+            </article>
+            <article class="admin-panel">
+              <h2>Quick Actions</h2>
+              <div class="quick-actions">
+                <button class="btn">Add Property</button>
+                <button class="btn">Create Agreement</button>
+                <button class="btn">Assign Agent</button>
+                <button class="btn">Send WhatsApp Update</button>
+              </div>
+            </article>
+          </section>
+
+          <section class="section">
+            <h2>Recent Inquiries</h2>
+            <div class="table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr><th>Name</th><th>City</th><th>Need</th><th>Status</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td data-label="Name">Krunal P.</td><td data-label="City">Anand</td><td data-label="Need">2 BHK Rental</td><td data-label="Status">Follow-up Today</td></tr>
+                  <tr><td data-label="Name">Ritika N.</td><td data-label="City">Ahmedabad</td><td data-label="Need">Office Lease</td><td data-label="Status">Site Visit Set</td></tr>
+                  <tr><td data-label="Name">Mehul R.</td><td data-label="City">Nadiad</td><td data-label="Need">Sale Documentation</td><td data-label="Status">Agreement Draft</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
       </div>
-    </header>
-
-    <main class="dashboard">
-      <h1>Welcome, Admin</h1>
-      <p>Manage inquiries, listings, and service workflow from this responsive control panel.</p>
-
-      <section class="dashboard-cards">
-        <article class="stat"><h3>54</h3><p>Active Rental Leads</p></article>
-        <article class="stat"><h3>18</h3><p>Buy/Sell Deals</p></article>
-        <article class="stat"><h3>33</h3><p>Legal Docs in Process</p></article>
-        <article class="stat"><h3>12</h3><p>Police Verifications</p></article>
-      </section>
-
-      <section class="section">
-        <h2>Recent Inquiries</h2>
-        <table class="admin-table">
-          <thead>
-            <tr><th>Name</th><th>City</th><th>Need</th><th>Status</th></tr>
-          </thead>
-          <tbody>
-            <tr><td>Krunal P.</td><td>Anand</td><td>2 BHK Rental</td><td>Follow-up Today</td></tr>
-            <tr><td>Ritika N.</td><td>Ahmedabad</td><td>Office Lease</td><td>Site Visit Set</td></tr>
-            <tr><td>Mehul R.</td><td>Nadiad</td><td>Sale Documentation</td><td>Agreement Draft</td></tr>
-          </tbody>
-        </table>
-      </section>
-    </main>
+    </div>
 
     <script>
       if (localStorage.getItem('brokerRole') !== 'admin') {
         window.location.href = 'index.html';
       }
+
+      const adminSidebar = document.getElementById('adminSidebar');
+      document.getElementById('adminMenuToggle').addEventListener('click', () => {
+        adminSidebar.classList.toggle('open');
+      });
+
       document.getElementById('logoutAdmin').addEventListener('click', () => {
         localStorage.removeItem('brokerRole');
         localStorage.removeItem('brokerUser');
